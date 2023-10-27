@@ -31,12 +31,17 @@ def main():
     user_input = int(input("Please enter an option: "))
 
     while user_input != 3:
+        # menu option 1
         if user_input == 1:
             to_be_encoded = input("Please enter your password to encode: ")
+            # intializes variable to encode
             password = encode(to_be_encoded)
             print("Your password has been encoded and stored?")
+        # menu option 2
         elif user_input == 2:
+            # initializes variable to be decoded
             to_be_decoded = decode_password(password)
+            # prints encoded password and original password after its been decoded
             print(f"The encoded password is {password}, and the original password is {to_be_decoded}")
 
 
