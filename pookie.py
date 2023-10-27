@@ -6,16 +6,39 @@ Section Number: 22282
 Description: adds 3 to each digit in 8 character password
 '''
 def encode(password):
+    # creates a string to add the increased digits to
     empty_string = ""
+    # goes through each digit in the inputed password
     for digit in password:
+        # adds 3 to each digit
         empty_string += str(int(digit) + 3)
-        if "7" <= digit <= "9":  #make 10, 11, 12
-            empty_string = empty_string[:-2]  # "deletes" two digit number
-            empty_string += str(int(digit) - 7)  # makes it a single digit number, adds the correct number back
+        # accounts for numbers that will have 2 digits when adding 3 (10, 11, 12)
+        if "7" <= digit <= "9":
+            # removes 2 digit number from string
+            empty_string = empty_string[:-2]
+            # adds the two-digit number minus 7 (to make it only the number in the one's place) to the string
+            empty_string += str(int(digit) - 7)
 
-    print(empty_string)
+    return empty_string
 
 
-encode("00009962")
+def main():
+    print("""Menu
+-------------
+1. Encode
+2. Decode
+3. Quit""")
+    user_input = int(input("Please enter an option: "))
 
-# adds 3 to digit 9; adds '12' to string; takes '12' off of string; subtracts 7 from digit 9, adds '2' to string
+    while user_input != 3:
+        if user_input == 1:
+            to_be_encoded = input("Please enter your password to encode: ")
+            password = encode(to_be_encoded)
+            print("Your password has been encoded and stored?")
+        elif user_input == 2:
+            to_be_decoded = decode_password(password)
+            print(f"The encoded password is {password}, and the original password is {to_be_decoded}")
+
+
+if __name__ == "__main__":
+    main()
